@@ -43,16 +43,17 @@ router.get("/", (req, res) => {
 });
 
 // GET - /api/posts/:id
-// Will not show error messages with invalid id parameter
 router.get("/:id", (req, res) => {
-  db.findById(req.params.id)
+  const ID = req.params.id;
+
+  db.findById(ID)
     .then(data => {
-      if(data) {
-        res.status(200).json(data);
-      } else {
+      if(data.length < 1) {
         res.status(404).json({
           errorMessage: "The post with the specified ID does not exist."
         })
+      } else {
+        res.status(200).json(data);
       }
     })
     .catch(err => {
