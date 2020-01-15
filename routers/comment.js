@@ -29,7 +29,7 @@ router.post("/", (req, res) => {
             message: "The post with the specified ID does not exist." 
           })
         } else {
-          res.status(200).json({ 
+          res.status(201).json({ 
             message: "Your comment has been posted.",
             post: comment
           })
@@ -59,7 +59,7 @@ router.get("/", (req, res) => {
     .catch(err => {
       console.error(err);
       res.status(500).json({
-        errorMessage: "The comments information could not be retrieved."
+        error: "The comments information could not be retrieved."
       })
     })
 });

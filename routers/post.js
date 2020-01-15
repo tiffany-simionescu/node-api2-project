@@ -23,7 +23,7 @@ router.post('/', (req, res) => {
     .catch(err => {
       console.error(err);
       res.status(500).json({
-        errorMessage: "There was an error while saving the post to the database."
+        error: "There was an error while saving the post to the database."
       });
     })
 });
@@ -37,7 +37,7 @@ router.get("/", (req, res) => {
     .catch(err => {
       console.error(err);
       res.status(500).json({
-        errorMessage: "The posts information could not be retrieved."
+        error: "The posts information could not be retrieved."
       })
     })
 });
@@ -50,7 +50,7 @@ router.get("/:id", (req, res) => {
     .then(data => {
       if(data.length < 1) {
         res.status(404).json({
-          errorMessage: "The post with the specified ID does not exist."
+          message: "The post with the specified ID does not exist."
         })
       } else {
         res.status(200).json(data);
@@ -59,7 +59,7 @@ router.get("/:id", (req, res) => {
     .catch(err => {
       console.error(err);
       res.status(500).json({
-          errorMessage: "The post information could not be retrieved."
+          error: "The post information could not be retrieved."
         })
     })
 })
@@ -74,14 +74,14 @@ router.delete("/:id", (req, res) => {
         })
       } else {
         res.status(404).json({
-          errorMessage: "The post with the specified ID does not exist."
+          message: "The post with the specified ID does not exist."
         })
       }
     })
     .catch(err => {
       console.error(err);
       res.status(500).json({
-        errorMessage: "The post could not be removed."
+        error: "The post could not be removed."
       })
     })
 });
@@ -101,14 +101,14 @@ router.put("/:id", (req, res) => {
         res.status(200).json(data);
       } else {
         res.status(404).json({
-          errorMessage: "The post with the specified ID does not exist."
+          message: "The post with the specified ID does not exist."
         })
       }
     })
     .catch(err => {
       console.error(err);
       res.status(500).json({
-        errorMessage: "The post information could not be modified."
+        error: "The post information could not be modified."
       })
     })
 });
